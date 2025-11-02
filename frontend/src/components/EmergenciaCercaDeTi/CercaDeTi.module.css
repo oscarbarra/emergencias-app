@@ -1,0 +1,48 @@
+
+
+/* ===== Utilidades del Archivo ===== */
+/* === Pensado para todas las resoluciones ===*/
+/* ===== Idealmente ===== */
+.block {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: orange;
+    gap: 1rem;
+}
+
+.white_image {
+    height: 4em;
+    width: 4em;
+    border-radius: 20%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.black_image {
+    height: 5em;
+    width: 5em;
+    border-radius: 20%;
+    object-fit: cover;
+    border: 2px solid black;
+}
+
+.center_text {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.white_text {
+    color: white;
+    font-size: 1.15vw;
+    font-weight: bold;
+}
+
+.black_text {
+    color: black;
+    font-size: x-large;
+    font-weight: bold;
+}

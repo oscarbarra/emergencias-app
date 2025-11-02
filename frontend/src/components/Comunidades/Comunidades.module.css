@@ -1,0 +1,46 @@
+
+/* ===== Utilidades del Archivo ===== */
+/* === Pensado para todas las resoluciones ===*/
+/* ===== Idealmente ===== */
+.container {
+    height: 5%;
+    width: 80%;
+}
+
+.block {
+    height: 5%;
+    width: 100%;
+    margin-top: 2vh;
+    padding: 8px 0;
+    background-color: transparent;
+    transition: background-color 0.4s ease, transform 0.3s ease;
+}
+
+.block:hover {
+    background-color: rgb(66, 44, 105);
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.center_text {
+    text-align: center;
+}
+
+.text {
+    margin: 0;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.white_text {
+    color: white;
+    font-size: 1.25vw;
+    font-weight: bold;
+}
+
+.black_text {
+    color: black;
+    font-size: 1.25vw;
+    font-weight: bold;
+}
+
