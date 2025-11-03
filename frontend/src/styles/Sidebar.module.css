@@ -1,0 +1,78 @@
+.sidebarOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.sidebarOverlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.sidebar {
+  position: fixed;
+  left: -320px;
+  top: 0;
+  bottom: 0;
+  width: 280px;
+  background: #fff;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.25);
+  z-index: 60;
+  padding: 20px;
+  transition: left 0.3s ease;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+/* contenido */
+.close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.groups {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.groups li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.btnPrimary,
+.btnPrimaryOutline {
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.btnPrimary {
+  background: #1976d2;
+  color: white;
+  border: none;
+  margin-bottom: 8px;
+}
+
+.btnPrimaryOutline {
+  background: transparent;
+  border: 1px solid #1976d2;
+  color: #1976d2;
+}

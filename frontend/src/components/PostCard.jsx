@@ -1,31 +1,36 @@
 import React from "react";
 import styles from "../styles/PostCard.module.css";
+import commentIcon from "../assets/comment.svg";
 
 export default function PostCard({ post }) {
   return (
-    <div className={styles.postCard}>
+    <article className={styles.card}>
       <div className={styles.header}>
-        <div className={styles.profilePic}></div>
+        <img
+          src={post.avatar || "/img/default-avatar.png"}
+          alt="avatar"
+          className={styles.avatar}
+        />
         <div>
-          <strong>{post.user}</strong>
-          <p className={styles.group}>{post.group}</p>
+          <div className={styles.userName}>{post.user}</div>
         </div>
       </div>
 
-      <p className={styles.description}>{post.description}</p>
+      <p className={styles.text}>{post.description}</p>
 
-      {post.images.length > 0 && (
-        <img
-          src={post.images[0]}
-          alt="post"
-          className={styles.postImage}
-        />
+      {post.images && post.images.length > 0 && (
+        <div className={styles.mediaWrap}>
+          <img src={post.images[0]} alt="post" className={styles.media} />
+        </div>
       )}
 
       <div className={styles.footer}>
-        <span>💬 {post.comments}</span>
-        <button className={styles.commentBtn}>Ver comentarios</button>
+        <div className={styles.commentArea}>
+          <img src={commentIcon} alt="comentarios" className={styles.commentIcon}/>
+          <span className={styles.commentCount}>{post.comments}</span>
+        </div>
+        <button className={styles.cta}>Ver comentarios</button>
       </div>
-    </div>
+    </article>
   );
 }

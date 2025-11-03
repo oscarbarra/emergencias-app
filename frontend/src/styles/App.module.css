@@ -1,0 +1,32 @@
+:root{
+  --scale: 1.12; /* 12% más grande para legibilidad en 1080p vertical */
+  --blue: #68aee0;
+  --nav-blue: #5aa2da;
+}
+
+.app{
+  height:100vh;
+  width:100%;
+  background:#f6f9fb;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.shell{
+  height:100%;
+  overflow:auto;
+}
+
+.dimmed::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 50;
+}
+@media (max-width: 768px) {
+  :root {
+    --scale: 1; /* Escala normal en pantallas más pequeñas */
+  }
+}

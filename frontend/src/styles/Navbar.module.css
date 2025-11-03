@@ -1,78 +1,52 @@
-.navbar {
-  display: flex;
-  align-items: center;
-  background-color: #90caf9;
-  padding: 10px;
+.nav{
+  position: sticky;
+  top: 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background: var(--nav-blue);
   color: white;
-  position: relative;
+  padding: calc(10px * var(--scale)) 10px;
+  z-index: 60;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
 }
 
-.menuButton {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 22px;
-  margin-right: 10px;
-  cursor: pointer;
+/* hamburguesa simple estilo metro */
+.hamb{
+  background: transparent;
+  border:none;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  margin-left:6px;
 }
 
-.title {
-  font-size: 18px;
-  flex-grow: 1;
-  text-align: center;
+.hambInner{
+  display:block;
+  width:20px;
+  height:2px;
+  background:white;
+  box-shadow: 0 -6px 0 white, 0 6px 0 white;
+  border-radius:2px;
 }
 
-/* Sidebar (menu lateral) */
-.sidebar {
-  position: absolute;
-  top: 50px;
-  left: 0;
-  background: white;
-  color: #333;
-  width: 80%;
-  height: calc(100vh - 50px);
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  padding: 15px;
-  animation: slideIn 0.3s ease;
+.titleWrap{
+  flex:1;
+  text-align:center;
+  pointer-events:none;
 }
 
-.sidebar h2 {
-  font-size: 16px;
-  margin-bottom: 10px;
+.title{
+  font-size: calc(16px * var(--scale));
+  font-weight:600;
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.rightPlaceholder{
+  width:44px; /* para que el título quede centrado respecto a hamburguesa */
 }
-
-.sidebar li {
-  padding: 8px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.groupBtn {
-  display: block;
-  width: 100%;
-  background: #64b5f6;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.groupBtn:hover {
-  background-color: #42a5f5;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+.optionBtn:hover {
+  background-color: #1565c0;
 }
