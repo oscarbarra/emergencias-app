@@ -10,41 +10,50 @@ function Pc1920x1080() {
     const Comunidadesguardadas = [];
     const EmergenciasEsquemas = [];
 
+    const img = ["Derrumbe.jpg", "Incendios-forestales.jpg", "Inundaciones.jpg"]
+    const msg = ["Derrumbre en Atacama", "Incendio en Valparaiso", "Puente Alto nuevamente con inundaciones"]
+    const cds = ["Temuco", "Santiago", "Atacama", "Valparaiso"]
+
     function crearEmergenciasCercanas(cantidad) {
-        for (let i=0; i<cantidad; i++) {
-            EmergenciasCercanas.push(<CloseToYou />)
-        }
-    }
-
-    function crearComunidadesguardadas(cantidad) {
-        for (let j=0; j<cantidad; j++) {
-            Comunidadesguardadas.push(<ComunidadGuardada />)
-        }
-    }
-
-    function crearEmergenciasEsquemas(cantidad) {
-        for (let k=0; k<cantidad; k++) {
-            EmergenciasEsquemas.push(
-                <EmergenciaPublicacion 
-                usuario="Oscar Barra"
-                icono="./IE.png"
-                mensaje="Explorando la nueva versión de la app"
-                imagen="./IE.png"
+        for (let i = 0; i < cantidad; i++) {
+            EmergenciasCercanas.push(<CloseToYou 
+                mensaje={`${msg[i%3]}`}
+                imagen={`${img[i%3]}`}
             />)
         }
     }
 
-    crearEmergenciasCercanas(10)
-    crearComunidadesguardadas(10)
-    crearEmergenciasEsquemas(10)
+    function crearComunidadesguardadas(cantidad) {
+        for (let j = 0; j < cantidad; j++) {
+            Comunidadesguardadas.push(<ComunidadGuardada 
+                ciudad={`${cds[j%4]}`}
+            />)
+        }
+    }
+
+    function crearEmergenciasEsquemas(cantidad) {
+        for (let k = 0; k < cantidad; k++) {
+            EmergenciasEsquemas.push(
+                <EmergenciaPublicacion
+                    usuario="Oscar Barra"
+                    icono="./IE.png"
+                    mensaje={`${msg[k % 3]}`}
+                    imagen={`${img[k % 3]}`}
+                />)
+        }
+    }
+
+    crearEmergenciasCercanas(3)
+    crearComunidadesguardadas(4)
+    crearEmergenciasEsquemas(5)
 
     return (
         <div className={styles.container}>
             {/* Izquierda */}
             <section>
                 <ul>
-                    <li className={styles.logo_container}>
-                        <img src='./Vigilare_01-A.png' alt='Logo app' className={styles.logo}/>
+                    <li className={`${styles.logo_container} ${styles.sticky_top}`}>
+                        <img src='./Vigilare_01-A.png' alt='Logo app' className={styles.logo} />
                     </li>
 
                     <li className={styles.block}>
@@ -55,8 +64,8 @@ function Pc1920x1080() {
 
             {/* Centro */}
             <section>
-                <div className={`${styles.block} ${styles.center_text}`}>
-                    <span className={styles.white_text}>Comunidad de Quepe</span>
+                <div className={`${styles.block} ${styles.center_text} ${styles.sticky_top}`}>
+                    <span className={styles.black_text}>Noticias en Chile</span>
                 </div>
 
                 {EmergenciasEsquemas}
@@ -64,14 +73,14 @@ function Pc1920x1080() {
 
             {/* Derecha */}
             <section>
-                <div className={`${styles.block} ${styles.center_text}`}>
-                    <span className={styles.white_text}>Emergencias cerca de tu posición</span>
+                <div className={`${styles.block} ${styles.center_text}  ${styles.sticky_top}`}>
+                    <span className={styles.black_text}>Emergencias cercanas</span>
                 </div>
 
                 {EmergenciasCercanas}
             </section>
         </div>
-        
+
     )
 }
 

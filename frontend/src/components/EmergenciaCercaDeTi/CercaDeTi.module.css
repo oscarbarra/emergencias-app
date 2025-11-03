@@ -8,41 +8,49 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: orange;
+    justify-content: flex-start;
+    background-color: transparent;
     gap: 1rem;
+    border-bottom: 1px solid #9E9E9E;
 }
 
 .white_image {
+    flex-shrink: 0;
     height: 4em;
     width: 4em;
+    margin-left: 0.5rem;
     border-radius: 20%;
     object-fit: cover;
     border: 2px solid white;
 }
 
 .black_image {
-    height: 5em;
-    width: 5em;
+    flex-shrink: 0;
+    height: 4vw;
+    width: 4vw;
+    margin-left: 0.5rem;
     border-radius: 20%;
     object-fit: cover;
-    border: 2px solid black;
+    border: 2px solid #212121;
 }
 
 .center_text {
     margin: 0;
     padding: 0;
+    flex-grow: 1;
     text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .white_text {
     color: white;
-    font-size: 1.15vw;
+    font-size: 1rem;
     font-weight: bold;
 }
 
 .black_text {
-    color: black;
-    font-size: x-large;
+    color: #212121;
+    font-size: 1.25vw;
     font-weight: bold;
 }

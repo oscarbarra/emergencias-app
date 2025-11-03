@@ -1,10 +1,10 @@
 
 import styles from './ComunidadGuardada.module.css'
 
-function ComunidadGuardada() {
+function ComunidadGuardada({ ciudad }) {
     return (
-        <li className={`${styles.block} ${styles.white_text}`}>
-            <p className={styles.text}>Temuco</p>
+        <li className={`${styles.block} ${styles.black_text}`}>
+            <p className={styles.text}> {ciudad} </p>
         </li>
     );
 };

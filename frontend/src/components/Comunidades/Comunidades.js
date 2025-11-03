@@ -13,7 +13,7 @@ function Comunidades({ comunidades }) {
     return (
         <div className={`${styles.container}`}>
             <div onClick={toggleMostrarComunidades}
-                className={`${styles.block} ${styles.white_text}`}>
+                className={`${styles.block} ${styles.black_text}`}>
                 <p className={styles.text}>Comunidades</p>
             </div>
 

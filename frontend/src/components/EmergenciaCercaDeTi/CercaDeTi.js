@@ -1,11 +1,11 @@
 
 import styles from './CercaDeTi.module.css'
 
-function CercaDeTi() {
+function CercaDeTi({ imagen, mensaje }) {
     return (
         <div className={`${styles.center_text} ${styles.block}`}>
-            <img src='./IE.png' alt='Imagen de la Emergencia' className={styles.white_image}/>
-            <p className={styles.white_text}>Incendio en la Araucania</p>
+            <img src={imagen} alt='Imagen de la Emergencia' className={styles.black_image}/>
+            <p className={styles.black_text}>{mensaje}</p>
         </div>
         
     )

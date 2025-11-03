@@ -13,11 +13,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 2vh;
+}
+
+.sticky_top {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #212121;
+    overflow-y: auto;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
 }
 
 .logo_container {
-    height: 108px;
+    height: 78px;
     width: 100%;
     display: flex;
 }
@@ -36,18 +44,15 @@
     color: white;
     font-size: 1.25vw;
     font-weight: bold;
-    border-bottom: 2px solid white;
     display: inline-block;
 }
 
 .black_text {
-    color: black;
-    font-size: x-large;
+    color: #212121;
+    font-size: 2vw;
     font-weight: bold;
-    border-bottom: 2px solid black;
     display: inline-block;
 }
-
 
 /* ===== Generales del Archivo ===== */
 /* === Solo para resoluciones 1920x1080 ===*/
@@ -58,7 +63,7 @@ ul {
 }
 
 section {
-    background-color: rgba(238, 70, 154, 0.678);
+    background-color: #ffffff;
     display: inline-block;
     height: 100vh;
     width: 50vw;
@@ -68,13 +73,11 @@ section {
 }
 
 section:first-child {
-    background-color: rgb(230, 171, 200);
     width: 25vw;
-    border-right: 2px solid rgb(165, 17, 91);
+    border-right: 2px solid #9E9E9E;
 }
 
 section:last-child {
-    background-color: rgba(238, 70, 154, 0.678);
     width: 25vw;
-    border-left: 2px solid rgb(165, 17, 91);
+    border-left: 2px solid #9E9E9E;
 }
