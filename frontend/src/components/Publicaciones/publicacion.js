@@ -1,7 +1,7 @@
 
-import styles from './EmergenciaPublicacion.module.css'
+import styles from './publicacion.module.css'
 
-function EmergenciaPublicacion({ usuario, icono, mensaje, imagen }) {
+function Publicacion({ usuario, icono, mensaje, imagen }) {
     return (
         <li className={styles.post}>
             <div className={styles.header}>
@@ -18,4 +18,4 @@ function EmergenciaPublicacion({ usuario, icono, mensaje, imagen }) {
     )
 }
 
-export default EmergenciaPublicacion
+export default Publicacion

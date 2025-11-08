@@ -1,4 +1,3 @@
-
 /* ===== Utilidades del Archivo ===== */
 /* === Solo para resoluciones 1920x1080 ===*/
 .container {
@@ -8,7 +7,8 @@
 }
 
 .block {
-    height: 10%;
+    min-height: 100px;
+    max-height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -16,16 +16,15 @@
 }
 
 .sticky_top {
-    background-color: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid #212121;
-    overflow-y: auto;
+    background-color: rgba(var(--color-fondo-rgb), 0.975);
+    border-bottom: 1px solid #1b2b47;
     position: sticky;
     z-index: 1000;
     top: 0;
 }
 
 .logo_container {
-    height: 78px;
+    height: 100px;
     width: 100%;
     display: flex;
 }
@@ -54,16 +53,62 @@
     display: inline-block;
 }
 
-/* ===== Generales del Archivo ===== */
-/* === Solo para resoluciones 1920x1080 ===*/
-ul {
-    list-style-type: none;
-    margin: 0;
+/* ===== Utilidades del Archivo ===== */
+/* === Sección Izquierda ===*/
+.user_container {
+    width: 100%;
+    background-color: var(--color-fondo);
+}
+
+.user_data {
+    width: 50%;
+    margin: 10px 0 0 50px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 1rem;
+    box-shadow: 0 0 12px 3px #1b2b47;
+    gap: 0.8rem;
+}
+
+.user_icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 0.09em solid white;
+    object-fit: cover;
+}
+
+.user_name {
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+}
+
+.comunidades_block {
+    margin: 10px 0;
     padding: 0;
 }
 
+/* ===== Generales del Archivo ===== */
+/* === Solo para resoluciones 1920x1080 ===*/
+body {
+    background-color: var(--color-fondo);
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow-y: auto;
+    flex: 1;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
 section {
-    background-color: #ffffff;
+    background-color: transparent;
     display: inline-block;
     height: 100vh;
     width: 50vw;
@@ -74,10 +119,22 @@ section {
 
 section:first-child {
     width: 25vw;
-    border-right: 2px solid #9E9E9E;
+    border-right: 2px solid #1b2b47;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+section:first-child>div:last-of-type {
+    margin-top: auto;
+    padding-bottom: 1.7em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 section:last-child {
     width: 25vw;
-    border-left: 2px solid #9E9E9E;
+    border-left: 2px solid #1b2b47;
 }

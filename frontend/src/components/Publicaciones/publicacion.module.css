@@ -6,17 +6,18 @@
     height: auto;
     width: 100%;
     max-width: 500px;
-    margin: 2vh auto;
-    padding: 1rem;
+    margin: 5vh auto;
     border-radius: 1rem;
-    box-shadow: 0 4px 10px #C84B31;
-    background-color: white;
+    box-shadow: 0 0 12px 3px #1b2b47;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
 }
 
 .header {
+    margin-top: 1em;
+    margin-left: 1em;
     display: flex;
     align-items: center;
     gap: 0.8rem;
@@ -26,19 +27,22 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    border: 0.09em solid white;
     object-fit: cover;
 }
 
 .user {
     font-weight: bold;
     font-size: 1rem;
-    color: #333;
+    color: white;
 }
 
 .message {
-    font-size: 0.95rem;
-    color: #444;
+    font-weight: bold;
+    font-size: 1.10rem;
+    color: white;
     margin: 0;
+    margin-left: 1em;
     padding: 0;
 }
 
@@ -49,7 +53,8 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    border-radius: 0.8rem;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
 }
 
 .image {

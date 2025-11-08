@@ -11,7 +11,8 @@
     justify-content: flex-start;
     background-color: transparent;
     gap: 1rem;
-    border-bottom: 1px solid #9E9E9E;
+    padding-left: 1em;
+    transition: background-color 0.4s ease, transform 0.3s ease;
 }
 
 .white_image {

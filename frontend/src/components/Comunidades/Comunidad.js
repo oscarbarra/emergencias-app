@@ -1,9 +1,9 @@
 
 import { useState } from "react";
 
-import styles from './Comunidades.module.css'
+import styles from './Comunidad.module.css'
 
-function Comunidades({ comunidades }) {
+function Comunidad({ comunidadesInfo }) {
     const [mostrarComunidades, setMostrarComunidades] = useState(false);
 
     function toggleMostrarComunidades() {
@@ -13,13 +13,13 @@ function Comunidades({ comunidades }) {
     return (
         <div className={`${styles.container}`}>
             <div onClick={toggleMostrarComunidades}
-                className={`${styles.block} ${styles.black_text}`}>
-                <p className={styles.text}>Comunidades</p>
+                className={`${styles.block} ${styles.fijo} main_hover`}>
+                <p className='text_comunidades'>Comunidades</p>
             </div>
 
-            { mostrarComunidades && comunidades }
+            { mostrarComunidades && comunidadesInfo }
         </div>
     );
 };
 
-export default Comunidades;
+export default Comunidad;
