@@ -1,17 +1,42 @@
 import React, { useState } from "react";
 import Feed from "./pages/Feed";
-import Sidebar from "./components/Sidebar";
-import styles from "./styles/App.module.css";
+import CreateAlert from "./components/CreateAlert";
+import Sidebar from "./components/Sidebar"; // ✅ importamos tu Sidebar
 
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState("feed");
+  const [posts, setPosts] = useState([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // ✅ estado para el sidebar
+
+  const handleAddAlert = (newPost) => {
+    setPosts((prev) => [newPost, ...prev]);
+    setCurrentView("feed");
+  };
+
+  const handleToggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
 
   return (
-    <div className={styles.app}>
-      <Sidebar isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
-      <div className={`${styles.shell} ${menuOpen ? styles.dimmed : ""}`}>
-        <Feed onToggleMenu={() => setMenuOpen((s) => !s)} />
-      </div>
-    </div>
+    <>
+      {/* === Sidebar === */}
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+
+      {/* === Contenido principal === */}
+      {currentView === "feed" && (
+        <Feed
+          onCreateAlert={() => setCurrentView("create")}
+          onToggleMenu={handleToggleSidebar} // ✅ ahora el botón hamburguesa funciona
+          posts={posts}
+        />
+      )}
+
+      {currentView === "create" && (
+        <CreateAlert
+          onCancel={() => setCurrentView("feed")}
+          onSubmit={handleAddAlert}
+        />
+      )}
+    </>
   );
 }

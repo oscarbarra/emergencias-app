@@ -1,3 +1,8 @@
+:root {
+  --nav-blue: linear-gradient(90deg, #2196f3, #1976d2);
+  --scale: 1; /* evita errores si no está definida */
+}
+
 .nav{
   position: sticky;
   top: 0;

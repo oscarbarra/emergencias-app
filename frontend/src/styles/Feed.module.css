@@ -1,60 +1,169 @@
-.feed{
-  max-width:720px; /* apariencia móvil centrada en pantallas grandes */
-  margin: 0 auto;
-  min-height: calc(100vh - 56px);
+/* === Contenedor principal === */
+.feed {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f0f6fb;
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
 }
 
-.posts{
-  padding: 12px;
-  padding-bottom: 96px; /* espacio para toolbar */
+/* === Posts === */
+.posts {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px; /* espacio para el footer */
 }
 
-/* toolbar inferior */
-.toolbar{
+/* === Barra inferior (toolbar) === */
+.toolbar {
   position: fixed;
-  left:50%;
-  transform: translateX(-50%);
-  bottom: 10px;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  max-width:420px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding: 10px 16px;
-  gap:8px;
-  z-index:55;
+  background: linear-gradient(180deg, #d0e7ff, #9fd4ff);
+  border-top: 1px solid #b6d9ff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  z-index: 11;
 }
 
-.iconBtn{
-  background: #68aee0;
-  border-radius: 8px;
-  border:none;
-  padding:10px 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+/* === Botones de ícono (home y perfil) === */
+.iconBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.iconBtn img{
-  width:24px;
-  height:24px;
-  object-fit: contain;
-  filter: none;
+.iconBtn img {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
 }
 
-.alertBtn{
-  flex:1;
-  margin: 0 8px;
-  background: linear-gradient(90deg,#8fd3ff,#57a8e0);
-  border:none;
-  color:white;
-  padding: 10px 6px;
-  border-radius:24px;
-  font-weight:600;
-  font-size: calc(14px * var(--scale));
-  box-shadow: 0 6px 12px rgba(87,168,224,0.25);
+.iconBtn:hover {
+  transform: scale(1.1);
 }
-.alertBtn:hover{
-  box-shadow: 0 8px 16px rgba(87,168,224,0.35);
+
+/* === Botón de alerta === */
+.alertBtn {
+  background: linear-gradient(180deg, #4dabff, #2a9dff);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 28px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.alertBtn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(180deg, #5bb5ff, #2591ff);
+}
+
+/* === Botón "Cerrar" === */
+.closeBtn {
+  background: linear-gradient(180deg, #ff5e5e, #e24040) !important;
+}
+
+/* Fondo oscuro cuando el panel está abierto */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* === Panel de Crear Alerta === */
+.slidePanel {
+  position: fixed;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  background: #6ec9ff; /* color azul del diseño */
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  transition: bottom 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 10;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  color: #fff;
+}
+
+.slideOpen {
+  bottom: 0; /* se desliza completamente hacia arriba */
+}
+
+/* Título del panel */
+.slidePanel h2 {
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Campos de texto */
+.slidePanel input,
+.slidePanel textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Botón de incluir foto */
+.slidePanel .photoBtn {
+  background: #9ee0ff;
+  border: none;
+  padding: 10px;
+  width: 60%;
+  border-radius: 15px;
+  color: #007acc;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.slidePanel .photoBtn:hover {
+  background: #b7ecff;
+}
+
+/* Botón de publicar */
+.slidePanel .publishBtn {
+  background: #0094ff;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  width: 60%;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.slidePanel .publishBtn:hover {
+  background: #007acc;
 }
