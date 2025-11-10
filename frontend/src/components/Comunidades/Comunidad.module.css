@@ -20,7 +20,7 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: var(--color-fondo);
+    background-color: rgb(var(--color-fondo-1));
 }
 
 .center_text {

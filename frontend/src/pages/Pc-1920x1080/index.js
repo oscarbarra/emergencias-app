@@ -1,58 +1,91 @@
 
 import styles from './index.module.css'
 import Comunidad from '../../components/Comunidades/Comunidad';
-import ComunidadInfo from '../../components/Comunidades/ComunidadGuardada/ComunidadGuardada';
+import ComunidadInfo from '../../components/Comunidades/ComunidadGuardada/ComunidadInfo';
 import Sugerencia from '../../components/Sugerencias/sugerencia';
 import Publicacion from '../../components/Publicaciones/publicacion';
 
-function Pc1920x1080() {
-    const ComunidadesInfo = [];
-    const Publicaciones = [];
-    const Sugerencias = [];
+import { pubCreadas } from './constantes/publicaciones'
 
-    const img = ["Derrumbe.jpg", "Incendios-forestales.jpg", "Inundaciones.jpg"]
+import { useState, useEffect } from "react";
+
+function Pc1920x1080() {
+    const [idxCiudad, setIdxCiudad] = useState(null);
+    const [publicaciones, setPublicaciones] = useState([]);
+
+    let ComunidadesInfo = [];
+    let Sugerencias = [];
+
+    const img = ["emergencias/Derrumbe.jpg", "emergencias/Incendios-forestales.jpg", "emergencias/Inundaciones.jpg"]
     const msg = ["Derrumbre en Atacama", "Incendio en Valparaiso", "Puente Alto nuevamente con inundaciones"]
-    const cds = ["Temuco", "Santiago", "Atacama", "Valparaiso"]
+    const cds = ["Todo Chile", "Temuco", "Santiago", "Atacama", "Valparaiso"]
+
+    function manejarSeleccion(idx) {
+        setIdxCiudad(idx);
+        crearPublicaciones(idx);
+    }
 
     function crearComunidades(cantidad) {
+        ComunidadesInfo = [];
         for (let j = 0; j < cantidad; j++) {
             ComunidadesInfo.push(<ComunidadInfo
-                ciudad={`${cds[j % 4]}`}
+                idx={j + 1}
+                ciudad={`${cds[j % cds.length]}`}
+                onSelect={manejarSeleccion}
             />)
         }
     }
 
-    function crearPublicaciones(cantidad) {
-        for (let k = 0; k < cantidad; k++) {
-            Publicaciones.push(
-                <Publicacion
-                    usuario="Oscar Barra"
-                    icono="./IE.png"
-                    mensaje={`${msg[k % 3]}`}
-                    imagen={`${img[k % 3]}`}
-                />)
+    function crearPublicaciones(idx) {
+        let publicacionesCiudad = [];
+
+        if (idx === 1) {
+            publicacionesCiudad = Object.values(pubCreadas).flat();
+        } else {
+            publicacionesCiudad = pubCreadas[idx] || [];
         }
+
+        const componentes = publicacionesCiudad.map((pub, i) => (
+            <Publicacion
+                key={i}
+                usuario={pub.usr}
+                icono={pub.icon}
+                mensaje={pub.msg}
+                imagen={pub.img}
+            />
+        ));
+
+        setPublicaciones(componentes);
     }
 
     function crearSugerencias(cantidad) {
+        Sugerencias = [];
         for (let i = 0; i < cantidad; i++) {
             Sugerencias.push(<Sugerencia
-                mensaje={`${msg[i % 3]}`}
-                imagen={`${img[i % 3]}`}
+                mensaje={`${msg[i % msg.length]}`}
+                imagen={`${img[i % img.length]}`}
             />)
         }
     }
 
-    crearComunidades(40)
-    crearPublicaciones(50)
-    crearSugerencias(30)
+    useEffect(() => {
+        // Publicaciones
+        setIdxCiudad(1);
+        crearPublicaciones(1);
+    }, []);
+
+    // Comunidades
+    crearComunidades(3)
+
+    // Sugerencias
+    crearSugerencias(3)
 
     return (
         <div className={styles.container}>
             {/* Izquierda */}
             <section>
                 <div className={`${styles.logo_container} ${styles.sticky_top}`}>
-                    <img src='./Vigilare_01-A.png' alt='Logo app' className={styles.logo} />
+                    <img src='logo-1.png' alt='Logo app' className={styles.logo} />
                 </div>
 
                 <ul>
@@ -63,7 +96,7 @@ function Pc1920x1080() {
 
                 <div className={styles.user_container}>
                     <div className={`${styles.user_data}`}>
-                        <img src="./IE.png" alt="Icono del usuario" className={styles.user_icon} />
+                        <img src="usuarios/IE.png" alt="Icono del usuario" className={styles.user_icon} />
                         <span className={styles.user_name}>[O]scar [Ba]rra</span>
                     </div>
                 </div>
@@ -76,7 +109,7 @@ function Pc1920x1080() {
                     <span className={styles.white_text}>Noticias en Chile</span>
                 </div>
 
-                {Publicaciones}
+                {publicaciones}
             </section>
 
             {/* Derecha */}

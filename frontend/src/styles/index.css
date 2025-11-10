@@ -15,8 +15,8 @@ code {
     monospace;
 }
 
-.main_hover:hover {
-    background-color: #1b2b47;
+.hover_efect:hover {
+    background-color: rgb(var(--color-hover-1));
     transform: scale(1.05);
     cursor: pointer;
 }

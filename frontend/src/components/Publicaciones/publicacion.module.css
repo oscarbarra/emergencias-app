@@ -1,4 +1,3 @@
-
 /* ===== Utilidades del Archivo ===== */
 /* === Pensado para todas las resoluciones ===*/
 /* ===== Idealmente ===== */
@@ -12,7 +11,7 @@
     background-color: transparent;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.5rem;
 }
 
 .header {
@@ -20,15 +19,7 @@
     margin-left: 1em;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-}
-
-.icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 0.09em solid white;
-    object-fit: cover;
+    gap: 0.5rem;
 }
 
 .user {
@@ -37,7 +28,15 @@
     color: white;
 }
 
-.message {
+.user_icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 0.09em solid white;
+    object-fit: cover;
+}
+
+.text {
     font-weight: bold;
     font-size: 1.10rem;
     color: white;
@@ -61,6 +60,29 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.comments {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.iconSlot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 8px;
+}
+
+.comment_icon {
+    height: 40px;
+    width: auto;
+    color: white;
 }
 
 /* ===== Generales del Archivo ===== */

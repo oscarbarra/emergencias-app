@@ -13,7 +13,7 @@ function Comunidad({ comunidadesInfo }) {
     return (
         <div className={`${styles.container}`}>
             <div onClick={toggleMostrarComunidades}
-                className={`${styles.block} ${styles.fijo} main_hover`}>
+                className={`${styles.block} ${styles.fijo} hover_efect`}>
                 <p className='text_comunidades'>Comunidades</p>
             </div>
 
