@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import PostCard from "../components/PostCard";
 import CreateAlert from "../components/CreateAlert";
+import CommentsSheet from "../components/CommentsSheet";
 import styles from "../styles/Feed.module.css";
 import HomeIcon from "../assets/home.svg";
 import UserIcon from "../assets/user.svg";
@@ -31,6 +32,13 @@ export default function Feed({ onToggleMenu }) {
   ]);
 
   const [showAlertPanel, setShowAlertPanel] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [commentsPost, setCommentsPost] = useState(null);
+
+    const openComments = (post) => {
+    setCommentsPost(post);
+    setShowComments(true);
+  };
 
   const handleCreateAlert = (newPost) => {
     setPosts([{ ...newPost, id: Date.now() }, ...posts]);
@@ -41,7 +49,7 @@ export default function Feed({ onToggleMenu }) {
       <Navbar title="Comunidad Huichahue" onMenuToggle={onToggleMenu} />
       <div className={styles.posts}>
         {posts.map((p) => (
-          <PostCard key={p.id} post={p} />
+          <PostCard key={p.id} post={p} onOpenComments={() => openComments(p)} />
         ))}
       </div>
 
@@ -67,6 +75,13 @@ export default function Feed({ onToggleMenu }) {
         isOpen={showAlertPanel}
         onClose={() => setShowAlertPanel(false)}
         onCreate={handleCreateAlert}
+      />
+
+      <CommentsSheet
+        isOpen={showComments}
+        post={commentsPost}
+        onClose={() => setShowComments(false)}
+        bottomBarHeight={64}
       />
     </div>
   );

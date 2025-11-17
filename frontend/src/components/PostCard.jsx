@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/PostCard.module.css";
 import commentIcon from "../assets/comment.svg";
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, onOpenComments }) {
   return (
     <article className={styles.card}>
       <div className={styles.header}>
@@ -29,7 +29,9 @@ export default function PostCard({ post }) {
           <img src={commentIcon} alt="comentarios" className={styles.commentIcon}/>
           <span className={styles.commentCount}>{post.comments}</span>
         </div>
-        <button className={styles.cta}>Ver comentarios</button>
+        <button className={styles.cta} onClick={onOpenComments}>
+        Ver comentarios
+      </button>
       </div>
     </article>
   );

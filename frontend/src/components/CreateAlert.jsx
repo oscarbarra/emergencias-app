@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import styles from "../styles/Feed.module.css"; // usa el mismo CSS donde está el slidePanel y overlay
+import styles from "../styles/CreateAlert.module.css"; // corregido: usar el CSS correcto
 
-export default function CreateAlert({ isOpen, onClose, onCreate }) {
+export default function CreateAlert({ isOpen, onClose, onCreate, navOffset = 64 }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
@@ -32,29 +32,29 @@ export default function CreateAlert({ isOpen, onClose, onCreate }) {
 
   return (
     <>
-      {/* Fondo oscuro */}
       <div
         className={`${styles.overlay} ${isOpen ? styles.overlayVisible : ""}`}
         onClick={onClose}
       />
 
-      {/* Panel deslizante */}
-      <div className={`${styles.slidePanel} ${isOpen ? styles.slideOpen : ""}`}>
+      <div
+        className={`${styles.container} ${styles.slidePanel} ${isOpen ? styles.slideOpen : ""}`}
+        style={{ bottom: Math.max(0, navOffset - 5) }} // baja 15px respecto al offset original
+        aria-hidden={!isOpen}
+      >
         <h2>Crear Alerta</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <input
             type="text"
             placeholder="Título..."
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-
           <textarea
             placeholder="Escribe el contenido de la alerta..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-
+          />
           <button
             type="button"
             className={styles.photoBtn}
@@ -69,7 +69,6 @@ export default function CreateAlert({ isOpen, onClose, onCreate }) {
             style={{ display: "none" }}
             onChange={(e) => setImage(e.target.files[0])}
           />
-
           <button type="submit" className={styles.publishBtn}>
             Publicar
           </button>
