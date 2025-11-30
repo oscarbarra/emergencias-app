@@ -19,6 +19,7 @@ code {
     background-color: rgb(var(--color-hover-1));
     transform: scale(1.05);
     cursor: pointer;
+    border-radius: 1rem;
 }
 
 .text_comunidades {

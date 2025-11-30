@@ -1,7 +1,10 @@
 import styles from './index.module.css'
+
 import ComunidadInfo from '../../components/Comunidades/ComunidadInfo';
 import Sugerencia from '../../components/Sugerencias/sugerencia';
 import Publicacion from '../../components/Publicaciones/publicacion';
+
+import ModalPublicacion from './modales/Publicaciones/modalPublicacion';
 
 import { useState, useEffect } from "react";
 
@@ -11,6 +14,11 @@ import { CumunidadesCls, PublicacionCls } from './utilidades/objetos';
 function PcView() {
     const [comunaActual, setComunaActual] = useState("Todo Chile");
     const [mostrarComunidades, setMostrarComunidades] = useState(false);
+    const [mostrarFormularioPublicacion, setMostrarFormularioPublicacion] = useState(false);
+
+    // Campos del Formulario para Crear Publicaciones
+    const [mensaje, setMensaje] = useState("");
+    const [imagen, setImagen] = useState(null);
 
     const [listaComunidades, setListaComunidades] = useState([]);
     const [listaPublicaciones, setListaPublicaciones] = useState([]);
@@ -31,34 +39,59 @@ function PcView() {
         ));
     };
 
-    function renderPublicaciones(cum=comunaActual) {
-    const pubs = 
-        cum === "Todo Chile"
-            ? listaPublicaciones
-            : listaPublicaciones.filter(pub => pub.comuna === cum);
+    function renderPublicaciones(cum = comunaActual) {
+        const pubs =
+            cum === "Todo Chile"
+                ? listaPublicaciones
+                : listaPublicaciones.filter(pub => pub.comuna === cum);
 
-    return pubs.map(pub => (
-        <Publicacion
-            key={pub.id}
-            usuario={pub.usuario}
-            icono={pub.icon}
-            mensaje={pub.mensaje}
-            imagen={pub.imagen}
-            comuna={pub.comuna}
-        />
-    ));
-};
+        return pubs.map(pub => (
+            <Publicacion
+                key={pub.id}
+                usuario={pub.usuario}
+                icono={pub.icon}
+                mensaje={pub.mensaje}
+                imagen={pub.imagen}
+                comuna={pub.comuna}
+            />
+        ));
+    };
 
-    function renderSugerencias(cum=comunaActual) {
-    const todas = listaPublicaciones;
-    const sugerenciasData = todas.filter(pub => pub.comuna !== cum);
-    return sugerenciasData.map(sug => (
-        <Sugerencia
-            mensaje={sug.mensaje}
-            imagen={sug.imagen}
-        />
-    ));
-}
+    function renderSugerencias(cum = comunaActual) {
+        const todas = listaPublicaciones;
+
+        const sugerenciasData = todas.filter(pub =>
+            pub.comuna !== cum && pub.imagen
+        );
+
+        return sugerenciasData.map(sug => (
+            <Sugerencia
+                key={sug.id}
+                mensaje={sug.mensaje}
+                imagen={sug.imagen}
+            />
+        ));
+    }
+
+    function crearPublicacion(e) {
+        e.preventDefault();
+
+        const nuevaPublicacion = new PublicacionCls(
+            "Usuario Actual",
+            "/usuarios/SnowMan.jpg",
+            mensaje,
+            imagen ? URL.createObjectURL(imagen) : null,
+            comunaActual
+        );
+
+        setListaPublicaciones(prev => [...prev, nuevaPublicacion]);
+
+        // reset valores
+        setMensaje("");
+        setImagen(null);
+        setMostrarFormularioPublicacion(false);
+    }
+
 
 
     // ===== Carga Inicial de los Datos =====
@@ -106,7 +139,7 @@ function PcView() {
                 </div>
 
                 <ul>
-                    <li className={`${styles.comunidades_container}`}>
+                    <li className={styles.comunidades_container}>
                         <div onClick={toggleMostrarComunidades}
                             className={`${styles.comunidades_block} ${styles.comunidades_fijo} hover_efect`}>
                             <p className='text_comunidades'>Comunidades</p>
@@ -117,12 +150,52 @@ function PcView() {
                 </ul>
 
                 <div className={styles.user_container}>
+                    <div
+                        className={`${styles.comunidades_block} hover_efect`}
+                        onClick={() => setMostrarFormularioPublicacion(true)}
+                    >
+                        <p className='text_comunidades'>Crear Publicación</p>
+                    </div>
+
                     <div className={`${styles.user_data}`}>
                         <img src="usuarios/SnowMan.jpg" alt="Icono del usuario" className={styles.user_icon} />
                         <span className={styles.user_name}>[O]scar [Ba]rra</span>
                     </div>
                 </div>
 
+                {mostrarFormularioPublicacion && (
+                    <ModalPublicacion>
+                        <form className={styles.formContainer} onSubmit={crearPublicacion}>
+
+                            <h2>Crear nueva publicación</h2>
+
+                            <label>Mensaje:</label>
+                            <textarea
+                                value={mensaje}
+                                onChange={(e) => setMensaje(e.target.value)}
+                                required
+                            />
+
+                            <label>Imagen (opcional):</label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setImagen(e.target.files[0] || null)}
+                            />
+
+                            <div className={styles.botonesForm}>
+                                <button type="submit">Crear</button>
+
+                                <button
+                                    type="button"
+                                    onClick={() => setMostrarFormularioPublicacion(false)}
+                                >
+                                    Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </ModalPublicacion>
+                )}
             </section>
 
             {/* Centro */}

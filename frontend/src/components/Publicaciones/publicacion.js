@@ -11,9 +11,12 @@ function Publicacion({ usuario, icono, mensaje, imagen }) {
 
             <p className={styles.text}>{mensaje}</p>
 
-            <div className={styles.image_Container}>
-                <img src={imagen} alt="Imagen de la publicación" className={styles.image} />
-            </div>
+            {imagen && (
+                <div className={styles.image_Container}>
+                    <img src={imagen} alt="Imagen de la publicación" className={styles.image} />
+                </div>
+            )}
+
 
             <div className={styles.comments}>
                 <div className={styles.iconSlot}>
