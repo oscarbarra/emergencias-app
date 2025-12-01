@@ -5,27 +5,39 @@ import Sugerencia from '../../components/Sugerencias/sugerencia';
 import Publicacion from '../../components/Publicaciones/publicacion';
 
 import ModalPublicacion from './modales/Publicaciones/modalPublicacion';
+import ModalComentarios from './modales/Comentarios/modalComentarios';
 
 import { useState, useEffect } from "react";
 
 import { comunidadesObj, publicacionesObj } from './utilidades/constantes';
 import { CumunidadesCls, PublicacionCls } from './utilidades/objetos';
+import { ComentarioCls } from './utilidades/objetos';
 
 function PcView() {
     const [comunaActual, setComunaActual] = useState("Todo Chile");
-    const [mostrarComunidades, setMostrarComunidades] = useState(false);
+    const [mostrarComunidades, setMostrarComunidades] = useState(true);
     const [mostrarFormularioPublicacion, setMostrarFormularioPublicacion] = useState(false);
+    const [mostrarComentarios, setMostrarComentarios] = useState(false);
 
     // Campos del Formulario para Crear Publicaciones
     const [mensaje, setMensaje] = useState("");
     const [imagen, setImagen] = useState(null);
 
+    // Campos del Formulario para Crear Comentarios
+    const [nuevoComentario, setNuevoComentario] = useState("");
+
     const [listaComunidades, setListaComunidades] = useState([]);
     const [listaPublicaciones, setListaPublicaciones] = useState([]);
+    const [publicacionSeleccionada, setPublicacionSeleccionada] = useState(null);
 
     // ===== Funciones Auxiliares =====
     function toggleMostrarComunidades() {
         setMostrarComunidades(prev => !prev);
+    }
+
+    function AbrirSeccionComentarios(publicacion) {
+        setPublicacionSeleccionada(publicacion);
+        setMostrarComentarios(true);
     }
 
     // ===== Funciones Importantes =====
@@ -47,12 +59,13 @@ function PcView() {
 
         return pubs.map(pub => (
             <Publicacion
-                key={pub.id}
                 usuario={pub.usuario}
                 icono={pub.icon}
                 mensaje={pub.mensaje}
                 imagen={pub.imagen}
                 comuna={pub.comuna}
+                onClicked={AbrirSeccionComentarios}
+                publi={pub}
             />
         ));
     };
@@ -92,9 +105,39 @@ function PcView() {
         setMostrarFormularioPublicacion(false);
     }
 
+    function agregarComentario(e) {
+        e.preventDefault();
+        if (!nuevoComentario.trim()) return;
 
+        const comentario = new ComentarioCls(
+            nuevoComentario,
+            "UsuarioActual",
+            new Date().toLocaleString()
+        );
 
-    // ===== Carga Inicial de los Datos =====
+        setListaPublicaciones(prev => {
+            const nuevasPublicaciones = prev.map(pub => {
+                if (pub.id === publicacionSeleccionada.id) {
+                    return {
+                        ...pub,
+                        comentarios: [...pub.comentarios, comentario]
+                    };
+                }
+                return pub;
+            });
+
+            const nuevaSeleccionada = nuevasPublicaciones.find(
+                p => p.id === publicacionSeleccionada.id
+            );
+            setPublicacionSeleccionada(nuevaSeleccionada);
+
+            return nuevasPublicaciones;
+        });
+
+        setNuevoComentario("");
+    }
+
+    // ===== Carga Inicial de los Datos Pre-Cargados =====
     useEffect(() => {
         const comunidadesTemp = Object.keys(comunidadesObj).map(key => {
             return new CumunidadesCls(comunidadesObj[key]);
@@ -205,6 +248,17 @@ function PcView() {
                 </div>
 
                 {renderPublicaciones()}
+
+                {mostrarComentarios && (
+                    <ModalComentarios
+                        publicacion={publicacionSeleccionada}
+                        onClose={() => setMostrarComentarios(false)}
+                        nuevoComentario={nuevoComentario}
+                        setNuevoComentario={setNuevoComentario}
+                        agregarComentario={agregarComentario}
+                    />
+                )}
+
             </section>
 
             {/* Derecha */}

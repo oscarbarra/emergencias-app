@@ -168,11 +168,8 @@
 
 /* Botón cancelar */
 .botonesForm button:last-child {
-    background: #ddd;
-}
-
-.botonesForm button:last-child:hover {
-    background: #c7c7c7;
+    color: white;
+    background: #333;
 }
 
 /* Animación suave */
