@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import PostCard from "../components/PostCard";
-import CreateAlert from "../components/CreateAlert";
-import CommentsSheet from "../components/CommentsSheet";
+import Navbar from "./components/Navbar";
+import PostCard from "./components/PostCard";
+import CreateAlert from "./components/CreateAlert";
+import CommentsSheet from "./components/CommentsSheet";
 import styles from "../styles/Feed.module.css";
 import HomeIcon from "../assets/home.svg";
 import UserIcon from "../assets/user.svg";
