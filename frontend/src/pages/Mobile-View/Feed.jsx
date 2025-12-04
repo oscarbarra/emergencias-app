@@ -3,9 +3,9 @@ import Navbar from "./components/Navbar";
 import PostCard from "./components/PostCard";
 import CreateAlert from "./components/CreateAlert";
 import CommentsSheet from "./components/CommentsSheet";
-import styles from "../styles/Feed.module.css";
-import HomeIcon from "../assets/home.svg";
-import UserIcon from "../assets/user.svg";
+import styles from "../../styles/Feed.module.css";
+import HomeIcon from "../Mobile-View/assets/home.svg"
+import UserIcon from "../Mobile-View/assets/user.svg";
 
 export default function Feed({ onToggleMenu }) {
   const [posts, setPosts] = useState([

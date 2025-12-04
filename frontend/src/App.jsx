@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Feed from "./pages/Feed";
-import CreateAlert from "./components/CreateAlert";
-import Sidebar from "./components/Sidebar"; // ✅ importamos tu Sidebar
+import Feed from "./pages/Mobile-View/Feed";
+import CreateAlert from "./pages/Mobile-View/components/CreateAlert";
+import Sidebar from "./pages/Mobile-View/components/Sidebar"; // ✅ importamos tu Sidebar
 
 export default function App() {
   const [currentView, setCurrentView] = useState("feed");

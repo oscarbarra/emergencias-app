@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/PostCard.module.css";
+import styles from "../../../styles/PostCard.module.css";
 import commentIcon from "../assets/comment.svg";
 
 export default function PostCard({ post, onOpenComments }) {
