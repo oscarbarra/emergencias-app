@@ -1,8 +1,8 @@
 import styles from './index.module.css'
 
-import ComunidadInfo from '../../components/Comunidades/ComunidadInfo';
-import Sugerencia from '../../components/Sugerencias/sugerencia';
-import Publicacion from '../../components/Publicaciones/publicacion';
+import ComunidadInfo from './components/Comunidades/ComunidadInfo';
+import Sugerencia from './components/Sugerencias/sugerencia';
+import Publicacion from './components/Publicaciones/publicacion';
 
 import ModalPublicacion from './modales/Publicaciones/modalPublicacion';
 import ModalComentarios from './modales/Comentarios/modalComentarios';

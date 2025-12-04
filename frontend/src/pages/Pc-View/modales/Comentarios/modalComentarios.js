@@ -1,6 +1,6 @@
 
 import styles from './modalComentarios.module.css'
-import Comentario from '../../../../components/Comentarios/comentario'
+import Comentario from '../../components/Comentarios/comentario'
 
 function ModalComentarios({ publicacion, onClose, nuevoComentario, setNuevoComentario, agregarComentario }) {
     if (!publicacion) return null;
