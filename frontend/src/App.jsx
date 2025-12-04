@@ -1,42 +1,10 @@
-import React, { useState } from "react";
-import Feed from "./pages/Mobile-View/Feed";
-import CreateAlert from "./pages/Mobile-View/components/CreateAlert";
-import Sidebar from "./pages/Mobile-View/components/Sidebar"; // ✅ importamos tu Sidebar
 
-export default function App() {
-  const [currentView, setCurrentView] = useState("feed");
-  const [posts, setPosts] = useState([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // ✅ estado para el sidebar
+import MobilView from "./pages/Mobile-View";
 
-  const handleAddAlert = (newPost) => {
-    setPosts((prev) => [newPost, ...prev]);
-    setCurrentView("feed");
-  };
-
-  const handleToggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
-
+function App() {
   return (
-    <>
-      {/* === Sidebar === */}
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-
-      {/* === Contenido principal === */}
-      {currentView === "feed" && (
-        <Feed
-          onCreateAlert={() => setCurrentView("create")}
-          onToggleMenu={handleToggleSidebar} // ✅ ahora el botón hamburguesa funciona
-          posts={posts}
-        />
-      )}
-
-      {currentView === "create" && (
-        <CreateAlert
-          onCancel={() => setCurrentView("feed")}
-          onSubmit={handleAddAlert}
-        />
-      )}
-    </>
+    <MobilView />
   );
 }
+
+export default App;
