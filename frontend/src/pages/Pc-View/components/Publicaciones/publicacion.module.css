@@ -89,6 +89,6 @@
 /* ===== Generales del Archivo ===== */
 /* === Pensado para todas las resoluciones ===*/
 /* ===== Idealmente ===== */
-li {
+:global(body.pc) li {
     list-style: none;
 }

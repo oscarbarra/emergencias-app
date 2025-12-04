@@ -2,7 +2,7 @@
 /* === Solo para resoluciones 1920x1080 ===*/
 .container {
     height: 100vh;
-    width: 98vw;
+    width: 100vw;
     display: flex;
 }
 
@@ -187,11 +187,11 @@
 
 /* ===== Generales del Archivo ===== */
 /* === Solo para resoluciones 1920x1080 ===*/
-body {
+:global(body.pc) body {
     background-color: rgb(var(--color-fondo-1));
 }
 
-ul {
+:global(body.pc) ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -201,8 +201,8 @@ ul {
     scrollbar-width: none;
 }
 
-section {
-    background-color: transparent;
+:global(body.pc) section {
+    background-color: rgb(var(--color-fondo-1));
     display: inline-block;
     height: 100vh;
     width: 50vw;
@@ -211,7 +211,7 @@ section {
     scrollbar-width: none;
 }
 
-section:first-child {
+:global(body.pc) section:first-child {
     width: 25vw;
     border-right: 2px solid #1b2b47;
     position: relative;
@@ -219,7 +219,7 @@ section:first-child {
     flex-direction: column;
 }
 
-section:first-child>div:last-of-type {
+:global(body.pc) section:first-child>div:last-of-type {
     margin-top: auto;
     padding-bottom: 1.7em;
     position: absolute;
@@ -228,7 +228,7 @@ section:first-child>div:last-of-type {
     right: 0;
 }
 
-section:last-child {
+:global(body.pc) section:last-child {
     width: 25vw;
     border-left: 2px solid #1b2b47;
 }
