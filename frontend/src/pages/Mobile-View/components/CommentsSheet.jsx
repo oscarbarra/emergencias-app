@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import styles from "../../../styles/CommentsSheet.module.css";
+import styles from "../../../styles/Movil/CommentsSheet.module.css";
 
 export default function CommentsSheet({ isOpen, onClose, post, bottomBarHeight = 64 }) {
   const listRef = useRef(null);

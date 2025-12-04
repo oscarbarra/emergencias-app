@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../../styles/CreateAlert.module.css"; // corregido: usar el CSS correcto
+import styles from "../../../styles/Movil/CreateAlert.module.css"; // corregido: usar el CSS correcto
 
 export default function CreateAlert({ isOpen, onClose, onCreate, navOffset = 64 }) {
   const [title, setTitle] = useState("");

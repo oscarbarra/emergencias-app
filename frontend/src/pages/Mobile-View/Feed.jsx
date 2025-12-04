@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import PostCard from "./components/PostCard";
 import CreateAlert from "./components/CreateAlert";
 import CommentsSheet from "./components/CommentsSheet";
-import styles from "../../styles/Feed.module.css";
+import styles from "../../styles/Movil/Feed.module.css";
 import HomeIcon from "../Mobile-View/assets/home.svg"
 import UserIcon from "../Mobile-View/assets/user.svg";
 
